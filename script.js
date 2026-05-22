@@ -16,9 +16,8 @@
   const form = document.getElementById('signup-form');
   const btn = document.getElementById('submit-btn');
   const input = document.getElementById('email');
-  const counterNum = document.getElementById('counter-num');
 
-  if (!form || !btn || !input || !counterNum) return;
+  if (!form || !btn || !input) return;
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -44,9 +43,6 @@
       // Success — terminal state. No revert: they've signed up, done.
       btn.classList.add('success');
       btn.textContent = "YOU'RE IN ✓";
-
-      const next = parseInt(counterNum.textContent, 10) + 1;
-      counterNum.textContent = next;
 
       input.value = '';
       input.disabled = true;

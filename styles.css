@@ -100,56 +100,133 @@ header {
 main {
   flex: 1;
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 60px;
-  padding: 70px 40px 50px;
-  align-items: center;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 72px;
+  padding: 56px 40px 64px;
+  align-items: start;
   max-width: 1320px;
   margin: 0 auto;
   width: 100%;
 }
 
 .left-col h1 {
-  font-size: clamp(44px, 8.5vw, 124px);
+  font-size: clamp(32px, 5.2vw, 68px);
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -3px;
+  line-height: 1.02;
+  letter-spacing: -1.4px;
+  max-width: 12ch;
 }
 
 .left-col h1 .line {
   display: block;
   opacity: 0;
-  transform: translateY(24px);
-  animation: rise 1s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  transform: translateY(20px);
+  animation: rise 1s 0.15s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
-.left-col h1 .line:nth-child(1) { animation-delay: 0.15s; }
-.left-col h1 .line:nth-child(2) { animation-delay: 0.32s; }
 
 .left-col h1 .period { color: var(--accent); }
 
-.subhead {
-  margin-top: 36px;
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--muted);
-  max-width: 520px;
+/* Lede — opens the manifesto. Slightly larger than body for emphasis. */
+.lede {
+  margin-top: 28px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--fg);
+  max-width: 560px;
   opacity: 0;
   transform: translateY(16px);
+  animation: rise 1s 0.4s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+}
+.lede strong { font-weight: 500; }
+
+/* Benefits section header — small caps with a trailing rule, editorial */
+.benefits-title {
+  margin-top: 44px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(12px);
   animation: rise 1s 0.55s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
+.benefits-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  max-width: 280px;
+}
 
-.subhead strong { color: var(--fg); font-weight: 500; }
+/* Benefits list — emoji acts as the bullet glyph */
+.benefits {
+  margin-top: 18px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--fg);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 1s 0.65s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+}
+.benefits li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.benefits .b-icon {
+  flex: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  /* Native emoji rendering — sits outside the mono face on purpose */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* Pull-quote tagline — orange rule on the left ties it to brand accent */
+.manifesto-quote {
+  margin-top: 36px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg);
+  font-weight: 500;
+  max-width: 560px;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--accent);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 1s 0.78s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+}
+
+/* CTA lead line — leads into the form */
+.cta-lede {
+  margin-top: 36px;
+  font-size: 14px;
+  color: var(--fg);
+  letter-spacing: 0.2px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: rise 1s 0.88s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+}
+.cta-lede .arrow { color: var(--accent); margin-right: 6px; }
 
 /* === Signup form === */
 .signup {
-  margin-top: 40px;
+  margin-top: 16px;
   display: flex;
-  max-width: 520px;
+  max-width: 560px;
   border: 1.5px solid var(--line-strong);
   background: var(--bg);
   opacity: 0;
   transform: translateY(16px);
-  animation: rise 1s 0.75s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  animation: rise 1s 0.98s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
   transition: border-color 0.2s ease;
 }
 
@@ -193,48 +270,125 @@ main {
   color: var(--muted);
   letter-spacing: 1.2px;
   opacity: 0;
-  animation: rise 1s 0.95s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  animation: rise 1s 1.12s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 
 .counter .num { color: var(--accent); font-weight: 500; }
 .counter::before { content: "→ "; color: var(--accent); }
 
-/* === Constellation mark === */
+/* === Founder card (right column) ===
+   Editorial "dossier" treatment for the portrait:
+   - Mono labels top + bottom, like a print caption
+   - Hairline frame around the image
+   - Offset card behind it for tactile depth
+   - Tiny corner registration marks (print-shop detail)
+   - Constellation mini-mark in the caption keeps the brand metaphor alive
+*/
 .right-col {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  /* Sticky so the photo card stays anchored while the long left column scrolls.
+     `top` aligns roughly with main's top padding so the image holds its initial
+     vertical position. Sticky degrades gracefully on browsers that don't support
+     it (the image just scrolls normally). */
+  position: sticky;
+  top: 32px;
+  align-self: start;
   opacity: 0;
   animation: rise 1.4s 0.4s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 
-.constellation-big {
+.founder-card {
   width: 100%;
-  max-width: 260px;
-  height: auto;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.founder-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  color: var(--muted);
+}
+.founder-card-meta.top span:first-child {
+  color: var(--fg);
+  font-weight: 500;
+}
+.founder-card-meta .cap-mark {
+  width: 18px;
+  height: 18px;
+  color: var(--fg);
   display: block;
 }
 
-.constellation-big .center-dot {
+/* Frame: hairline border + an offset "shadow card" behind it
+   (built with ::before so we don't add markup or real shadows) */
+.founder-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1.5px solid var(--line-strong);
+  background: var(--bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.founder-frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px -10px -10px 10px;
+  border: 1px solid var(--line);
+  z-index: -1;
+}
+
+.founder-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Quiet, editorial tone — preserves the photo while making it
+     feel printed rather than glossy. Animate in subtly. */
+  filter: grayscale(0.12) contrast(1.04) saturate(0.92);
+  transform: scale(1.01);
+  transition: filter 0.6s ease, transform 1.2s ease;
+}
+.founder-frame:hover img {
+  filter: grayscale(0) contrast(1) saturate(1);
+  transform: scale(1.03);
+}
+
+/* Corner registration marks — small plus-style ticks at each corner */
+.founder-frame .corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+.founder-frame .corner::before,
+.founder-frame .corner::after {
+  content: "";
+  position: absolute;
+  background: var(--line-strong);
+}
+.founder-frame .corner::before { width: 100%; height: 1px; top: 50%; left: 0; }
+.founder-frame .corner::after { width: 1px; height: 100%; left: 50%; top: 0; }
+.founder-frame .corner.tl { top: -7px; left: -7px; }
+.founder-frame .corner.tr { top: -7px; right: -7px; }
+.founder-frame .corner.bl { bottom: -7px; left: -7px; }
+.founder-frame .corner.br { bottom: -7px; right: -7px; }
+
+/* Keep the heartbeat on the orange dot inside the caption — same
+   brand motif we used to have on the big constellation, just smaller. */
+.cap-mark circle:last-of-type {
   transform-origin: center;
   transform-box: fill-box;
   animation: heartbeat 2.6s ease-in-out infinite;
 }
-
-.constellation-big .outer-dot {
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: orbit-fade 6s ease-in-out infinite;
-}
-
-.constellation-big .outer-dot:nth-child(1) { animation-delay: 0s; }
-.constellation-big .outer-dot:nth-child(2) { animation-delay: 0.75s; }
-.constellation-big .outer-dot:nth-child(3) { animation-delay: 1.5s; }
-.constellation-big .outer-dot:nth-child(4) { animation-delay: 2.25s; }
-.constellation-big .outer-dot:nth-child(5) { animation-delay: 3s; }
-.constellation-big .outer-dot:nth-child(6) { animation-delay: 3.75s; }
-.constellation-big .outer-dot:nth-child(7) { animation-delay: 4.5s; }
-.constellation-big .outer-dot:nth-child(8) { animation-delay: 5.25s; }
 
 /* === Animations === */
 @keyframes blink {
@@ -276,12 +430,18 @@ footer a:hover { color: var(--accent); }
 @media (max-width: 900px) {
   main {
     grid-template-columns: 1fr;
-    padding: 50px 24px 40px;
-    gap: 50px;
+    padding: 40px 24px 36px;
+    gap: 40px;
   }
-  .right-col { order: -1; }
-  .constellation-big { max-width: 160px; }
-  .left-col h1 { letter-spacing: -2px; }
+  .right-col {
+    order: -1;
+    /* Sticky doesn't make sense on a stacked single-column mobile layout */
+    position: static;
+    top: auto;
+  }
+  .founder-card { max-width: 240px; }
+  .founder-frame::before { inset: 8px -8px -8px 8px; }
+  .left-col h1 { letter-spacing: -1px; }
 }
 
 @media (max-width: 600px) {
@@ -300,7 +460,11 @@ footer a:hover { color: var(--accent); }
     transition-duration: 0.01ms !important;
   }
   .left-col h1 .line,
-  .subhead,
+  .lede,
+  .benefits-title,
+  .benefits,
+  .manifesto-quote,
+  .cta-lede,
   .signup,
   .counter,
   .right-col { opacity: 1 !important; transform: none !important; }

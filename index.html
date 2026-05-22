@@ -37,23 +37,47 @@
   <div class="meta">
     <span class="live">WAITLIST OPEN</span>
     <span>LONDON</span>
-    <span>EST. 2026</span>
   </div>
 </header>
 
 <main>
   <div class="left-col">
     <h1>
-      <span class="line">SOLO<span class="period">.</span></span>
-      <span class="line">NOT ALONE<span class="period">.</span></span>
+      <span class="line">Solo Founder Fellowship<span class="period">.</span></span>
     </h1>
 
-    <p class="subhead">
-      <strong>Solo Founder Fellowship</strong> — a London community pooling the best network, resources, and tools for the most ambitious solo founders. AI credits to ship with, AMAs with Europe's top solo founders, warm intros to UK VCs, and a private channel of fellows as ambitious as you are.
+    <p class="lede">
+      We're Mansi and Luca, ex-VCs turned solo founders who are now supporting the UK's most ambitious solo founders. <strong>The Solo Founder Fellowship</strong> is a London community for the rare breed of founder going it alone with conviction and an unreasonable amount of drive. We exist to give you the firepower, the network, and the people who match your energy.
     </p>
 
-    <form class="signup" id="signup-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+    <h2 class="benefits-title">What you get as a fellow</h2>
+
+    <ul class="benefits">
+      <li><span class="b-icon" aria-hidden="true">💰</span><span>Free AI tokens and SaaS tools to build your product</span></li>
+      <li><span class="b-icon" aria-hidden="true">🧠</span><span>AMAs with some of Europe's most successful solo founders</span></li>
+      <li><span class="b-icon" aria-hidden="true">📈</span><span>Warm intros and Demo Days with 40+ leading VCs</span></li>
+      <li><span class="b-icon" aria-hidden="true">⚡</span><span>Expert-led sessions on building Agentic AI into your workflow and product</span></li>
+      <li><span class="b-icon" aria-hidden="true">🤝</span><span>Hands-on support landing your first customers and sharpening your GTM</span></li>
+      <li><span class="b-icon" aria-hidden="true">💬</span><span>A private Slack for intros, advice, product feedback, and real-time support</span></li>
+      <li><span class="b-icon" aria-hidden="true">🔥</span><span>Regular socials with fellows as ambitious and unhinged as you are</span></li>
+    </ul>
+
+    <p class="manifesto-quote">
+      Building alone is hard. Building alone with the right people behind you is a different game entirely.
+    </p>
+
+    <p class="cta-lede">
+      <span class="arrow" aria-hidden="true">→</span> Sign up and come build with us.
+    </p>
+
+    <form class="signup" id="signup-form" action="https://formsubmit.co/ajax/lucapoppi98@gmail.com" method="POST" novalidate>
       <input type="email" name="email" id="email" placeholder="founder@yourcompany.io" required autocomplete="email">
+      <!-- FormSubmit config: clean email subject, table template, no captcha (AJAX flow) -->
+      <input type="hidden" name="_subject" value="New SFF waitlist signup">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <!-- Honeypot: bots fill this, humans don't. FormSubmit auto-discards. -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <button type="submit" id="submit-btn">JOIN WAITLIST →</button>
     </form>
 
@@ -63,25 +87,41 @@
   </div>
 
   <div class="right-col">
-    <svg class="constellation-big" viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SFF constellation mark">
-      <title>SFF mark</title>
-      <circle class="outer-dot" cx="80" cy="0" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="56.57" cy="56.57" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="0" cy="80" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="-56.57" cy="56.57" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="-80" cy="0" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="-56.57" cy="-56.57" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="0" cy="-80" r="4.5" fill="#0A0A0A"/>
-      <circle class="outer-dot" cx="56.57" cy="-56.57" r="4.5" fill="#0A0A0A"/>
-      <circle class="center-dot" cx="0" cy="0" r="22" fill="#FF4D00"/>
-    </svg>
+    <figure class="founder-card">
+      <div class="founder-card-meta top">
+        <span>FELLOW № 001</span>
+        <span aria-hidden="true">↗</span>
+      </div>
+
+      <div class="founder-frame">
+        <span class="corner tl" aria-hidden="true"></span>
+        <span class="corner tr" aria-hidden="true"></span>
+        <span class="corner bl" aria-hidden="true"></span>
+        <span class="corner br" aria-hidden="true"></span>
+        <img src="assets/portrait.jpg" alt="Founding fellow, Solo Founder Fellowship" loading="eager" decoding="async">
+      </div>
+
+      <figcaption class="founder-card-meta bottom">
+        <span>LONDON · MMXXVI</span>
+        <svg class="cap-mark" viewBox="-22 -22 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="0" r="1.8" fill="currentColor"/>
+          <circle cx="12.73" cy="12.73" r="1.8" fill="currentColor"/>
+          <circle cx="0" cy="18" r="1.8" fill="currentColor"/>
+          <circle cx="-12.73" cy="12.73" r="1.8" fill="currentColor"/>
+          <circle cx="-18" cy="0" r="1.8" fill="currentColor"/>
+          <circle cx="-12.73" cy="-12.73" r="1.8" fill="currentColor"/>
+          <circle cx="0" cy="-18" r="1.8" fill="currentColor"/>
+          <circle cx="12.73" cy="-12.73" r="1.8" fill="currentColor"/>
+          <circle cx="0" cy="0" r="5.5" fill="#FF4D00"/>
+        </svg>
+      </figcaption>
+    </figure>
   </div>
 </main>
 
 <footer>
   <div class="left">
     <span>SOLO FOUNDER FELLOWSHIP</span>
-    <span>51.5074° N, 0.1278° W</span>
   </div>
   <div class="right">
     <a href="#" id="link-x">X / TWITTER</a>

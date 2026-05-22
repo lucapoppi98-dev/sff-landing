@@ -1,9 +1,15 @@
 /* ============================================================
    SFF — Solo Founder Fellowship · landing page script
    ------------------------------------------------------------
-   Handles waitlist form submission with a client-side success
-   state. Replace the form action in index.html with a real
-   endpoint (Formspree, Tally, ConvertKit, Mailchimp, etc.).
+   Submits the waitlist form to FormSubmit (formsubmit.co) over
+   AJAX, then shows a terminal success state. On failure, shows
+   "TRY AGAIN" briefly so the user can retry.
+
+   Note: FormSubmit requires a one-time activation. The first real
+   submission triggers an email to the account owner with a confirm
+   link. After confirming, FormSubmit returns a hashed endpoint
+   (e.g. https://formsubmit.co/ajax/el/<hash>) — swap that into the
+   form's `action` to hide the raw email address from public HTML.
    ============================================================ */
 
 (function () {
@@ -14,7 +20,7 @@
 
   if (!form || !btn || !input || !counterNum) return;
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     if (!input.value || !input.checkValidity()) {
@@ -22,30 +28,34 @@
       return;
     }
 
-    // OPTIONAL: when wiring to a real endpoint, fetch() the form
-    // action here and only show success on a 2xx response.
-    // Example:
-    //
-    //   const res = await fetch(form.action, {
-    //     method: 'POST',
-    //     body: new FormData(form),
-    //     headers: { Accept: 'application/json' }
-    //   });
-    //   if (!res.ok) { /* show error state */ return; }
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = 'SENDING...';
 
-    btn.classList.add('success');
-    btn.textContent = "YOU'RE IN ✓";
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
 
-    const next = parseInt(counterNum.textContent, 10) + 1;
-    counterNum.textContent = next;
+      if (!res.ok) throw new Error('submission_failed');
 
-    input.value = '';
-    input.disabled = true;
+      // Success — terminal state. No revert: they've signed up, done.
+      btn.classList.add('success');
+      btn.textContent = "YOU'RE IN ✓";
 
-    setTimeout(function () {
+      const next = parseInt(counterNum.textContent, 10) + 1;
+      counterNum.textContent = next;
+
+      input.value = '';
+      input.disabled = true;
+    } catch (err) {
+      // Recoverable failure — let them retry
       btn.classList.remove('success');
-      btn.textContent = 'JOIN WAITLIST →';
-      input.disabled = false;
-    }, 4000);
+      btn.textContent = 'TRY AGAIN';
+      btn.disabled = false;
+      setTimeout(function () { btn.textContent = original; }, 3000);
+    }
   });
 })();

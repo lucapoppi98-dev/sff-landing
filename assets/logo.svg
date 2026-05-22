@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" role="img" aria-label="Solo Founder Fellowship">
+  <title>SFF</title>
+  <circle cx="80" cy="0" r="4.5" fill="#0A0A0A"/>
+  <circle cx="56.57" cy="56.57" r="4.5" fill="#0A0A0A"/>
+  <circle cx="0" cy="80" r="4.5" fill="#0A0A0A"/>
+  <circle cx="-56.57" cy="56.57" r="4.5" fill="#0A0A0A"/>
+  <circle cx="-80" cy="0" r="4.5" fill="#0A0A0A"/>
+  <circle cx="-56.57" cy="-56.57" r="4.5" fill="#0A0A0A"/>
+  <circle cx="0" cy="-80" r="4.5" fill="#0A0A0A"/>
+  <circle cx="56.57" cy="-56.57" r="4.5" fill="#0A0A0A"/>
+  <circle cx="0" cy="0" r="22" fill="#FF4D00"/>
+</svg>

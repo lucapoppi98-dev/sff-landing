@@ -1,0 +1,10 @@
+{
+  "name": "sff-landing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Solo Founder Fellowship — coming-soon landing page",
+  "scripts": {
+    "dev": "npx --yes serve@latest -p 3000 .",
+    "start": "npx --yes serve@latest -p 3000 ."
+  }
+}

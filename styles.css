@@ -205,64 +205,35 @@ main {
   animation: rise 1s 0.78s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 
-/* CTA lead line — leads into the form */
-.cta-lede {
-  margin-top: 36px;
-  font-size: 14px;
-  color: var(--fg);
-  letter-spacing: 0.2px;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: rise 1s 0.88s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
-}
-.cta-lede .arrow { color: var(--accent); margin-right: 6px; }
 
-/* === Signup form === */
-.signup {
-  margin-top: 16px;
-  display: flex;
-  max-width: 560px;
-  border: 1.5px solid var(--line-strong);
-  background: var(--bg);
-  opacity: 0;
-  transform: translateY(16px);
-  animation: rise 1s 0.98s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
-  transition: border-color 0.2s ease;
-}
-
-.signup:focus-within { border-color: var(--accent); }
-
-.signup input {
-  flex: 1;
-  min-width: 0;
-  padding: 17px 18px;
-  border: none;
-  background: transparent;
-  font: inherit;
-  font-size: 14px;
-  color: var(--fg);
-  outline: none;
-}
-
-.signup input::placeholder { color: var(--muted); }
-
-.signup button {
-  padding: 17px 26px;
+/* === Fixed CTA ===
+   Always-visible call to action. Floats bottom-right on desktop;
+   becomes a full-width thumb-reach bar on mobile. */
+.cta-fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 28px;
+  z-index: 10;
+  padding: 16px 26px;
   background: var(--line-strong);
   color: var(--bg);
-  border: none;
-  font: inherit;
+  border: 1.5px solid var(--line-strong);
+  font-family: inherit;
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: background 0.18s ease;
+  font-size: 12.5px;
+  letter-spacing: 1.8px;
+  text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 0.9s 1.0s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
-
-.signup button:hover { background: var(--accent); }
-.signup button:active { transform: translateY(1px); }
-.signup button.success { background: var(--accent); cursor: default; }
+.cta-fixed:hover { background: var(--accent); border-color: var(--accent); }
+.cta-fixed:active { transform: translateY(1px); }
+.cta-fixed:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cta-fixed .cta-arrow { margin-left: 8px; }
 
 /* === Founder card (right column) ===
    Editorial "dossier" treatment for the portrait:
@@ -396,7 +367,8 @@ main {
 
 /* === Footer === */
 footer {
-  padding: 20px 40px;
+  /* Extra bottom padding so the fixed CTA never covers footer text */
+  padding: 20px 40px 100px;
   border-top: 0.5px solid var(--line);
   display: flex;
   justify-content: space-between;
@@ -430,10 +402,19 @@ footer a:hover { color: var(--accent); }
 
 @media (max-width: 600px) {
   header { padding: 16px 20px; }
-  footer { padding: 16px 20px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  footer { padding: 16px 20px 110px; flex-direction: column; gap: 10px; align-items: flex-start; }
   .meta { display: none; }
-  .signup { flex-direction: column; }
-  .signup button { padding: 14px 20px; }
+
+  /* Full-width thumb-reach bar on small screens */
+  .cta-fixed {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
 }
 
 /* === Reduced motion === */
@@ -443,12 +424,12 @@ footer a:hover { color: var(--accent); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .eyebrow,
   .left-col h1 .line,
   .lede,
   .benefits-title,
   .benefits,
   .manifesto-quote,
-  .cta-lede,
-  .signup,
+  .cta-fixed,
   .right-col { opacity: 1 !important; transform: none !important; }
 }

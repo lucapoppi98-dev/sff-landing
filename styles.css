@@ -207,33 +207,38 @@ main {
 
 
 /* === Fixed CTA ===
-   Always-visible call to action. Floats bottom-right on desktop;
-   becomes a full-width thumb-reach bar on mobile. */
+   Always-visible call to action. Floats bottom-LEFT on desktop in
+   the brand orange; becomes a full-width thumb-reach bar on mobile.
+   Hover inverts to near-black so interaction still feels tactile. */
 .cta-fixed {
   position: fixed;
-  bottom: 24px;
-  right: 28px;
+  bottom: 28px;
+  left: 28px;
   z-index: 10;
-  padding: 16px 26px;
-  background: var(--line-strong);
-  color: var(--bg);
-  border: 1.5px solid var(--line-strong);
+  padding: 22px 36px;
+  background: var(--accent);
+  color: var(--fg);
+  border: 1.5px solid var(--accent);
   font-family: inherit;
   font-weight: 700;
-  font-size: 12.5px;
-  letter-spacing: 1.8px;
+  font-size: 14.5px;
+  letter-spacing: 2px;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
   opacity: 0;
   transform: translateY(20px);
   animation: rise 0.9s 1.0s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
-.cta-fixed:hover { background: var(--accent); border-color: var(--accent); }
+.cta-fixed:hover {
+  background: var(--line-strong);
+  border-color: var(--line-strong);
+  color: var(--bg);
+}
 .cta-fixed:active { transform: translateY(1px); }
-.cta-fixed:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.cta-fixed .cta-arrow { margin-left: 8px; }
+.cta-fixed:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.cta-fixed .cta-arrow { margin-left: 10px; }
 
 /* === Founder card (right column) ===
    Editorial "dossier" treatment for the portrait:
@@ -411,9 +416,9 @@ footer a:hover { color: var(--accent); }
     left: 16px;
     right: 16px;
     text-align: center;
-    padding: 15px 20px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
+    padding: 18px 20px;
+    font-size: 13px;
+    letter-spacing: 1.8px;
   }
 }
 

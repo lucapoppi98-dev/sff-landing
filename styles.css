@@ -217,7 +217,7 @@ main {
   z-index: 10;
   padding: 22px 36px;
   background: var(--accent);
-  color: var(--fg);
+  color: #fff;
   border: 1.5px solid var(--accent);
   font-family: inherit;
   font-weight: 700;

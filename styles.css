@@ -96,86 +96,142 @@ header {
   animation: blink 2s ease-in-out infinite;
 }
 
-/* === Hero / main === */
+/* === Main: centered column with a large inter-section rhythm.
+   The gap BETWEEN sections is deliberately much bigger than the gaps
+   WITHIN a section, so each section reads as one unit. === */
 main {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 72px;
-  padding: 56px 40px 64px;
-  align-items: start;
-  max-width: 1320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(72px, 11vh, 128px);
+  padding: clamp(48px, 8vh, 96px) 24px clamp(64px, 9vh, 112px);
+  max-width: 1080px;
   margin: 0 auto;
   width: 100%;
 }
 
-.left-col h1 {
-  font-size: clamp(32px, 5.2vw, 68px);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -1.4px;
-  max-width: 12ch;
+/* === Hero — centered, type-led, sits above the fold ===
+   No constellation mark: the oversized headline carries the focal weight. */
+.hero {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.left-col h1 .line {
+.hero h1 {
+  font-size: clamp(30px, 4.6vw, 54px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  text-wrap: balance;
+}
+
+.hero h1 .line {
   display: block;
   opacity: 0;
   transform: translateY(20px);
   animation: rise 1s 0.15s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 
-.left-col h1 .period { color: var(--accent); }
+.hero h1 .period { color: var(--accent); }
 
-/* Lede — opens the manifesto. Slightly larger than body for emphasis. */
+/* Lede — the hero subtitle. Slightly larger than body for emphasis. */
 .lede {
-  margin-top: 28px;
-  font-size: 16px;
-  line-height: 1.7;
+  margin-top: 22px;
+  font-size: 17px;
+  line-height: 1.65;
   color: var(--fg);
-  max-width: 560px;
+  max-width: 56ch;
   opacity: 0;
   transform: translateY(16px);
-  animation: rise 1s 0.4s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  animation: rise 1s 0.35s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 .lede strong { font-weight: 500; }
 
-/* Benefits section header — small caps with a trailing rule, editorial */
-.benefits-title {
-  margin-top: 44px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--fg);
-  display: flex;
-  align-items: center;
-  gap: 14px;
+/* === Social proof — a single restrained logo row under the subtitle === */
+.proof {
+  width: 100%;
+  margin-top: 40px;
   opacity: 0;
-  transform: translateY(12px);
-  animation: rise 1s 0.55s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  transform: translateY(14px);
+  animation: rise 1s 0.7s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
-.benefits-title::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-  max-width: 280px;
+.proof-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* Single line. Centered when the set fits; scrolls horizontally when it
+   doesn't (safe center keeps the first logo reachable on overflow). */
+.logo-strip {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: safe center;
+  gap: 22px;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.logo-strip::-webkit-scrollbar { display: none; }
+/* Community logos. A uniform height keeps a heterogeneous set consistent
+   on the strip; max-width stops a wide wordmark from dominating the row. */
+.logo-strip .logo {
+  flex: 0 0 auto;
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
-/* Benefits list — emoji acts as the bullet glyph */
-.benefits {
-  margin-top: 18px;
-  list-style: none;
+/* Section title — a proper heading (not the tiny kicker) for each
+   below-the-fold section. Reused by Benefits and Founders. */
+.section-title {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--fg);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Benefits — a lighter warm "card" panel so the section reads as a
+   distinct unit against the cream background. Off-white, NOT pure white
+   (per CLAUDE.md), with a hairline border and rounded corners. */
+.benefits-section {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 560px;
+  align-items: center;
+  background: #FAF7F0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(36px, 6vh, 64px) clamp(28px, 5vw, 56px);
+}
+.benefits {
+  width: 100%;
+  margin-top: 32px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--fg);
-  opacity: 0;
-  transform: translateY(14px);
-  animation: rise 1s 0.65s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
 .benefits li {
   display: flex;
@@ -190,82 +246,133 @@ main {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
-/* Pull-quote tagline — orange rule on the left ties it to brand accent */
-.manifesto-quote {
-  margin-top: 36px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--fg);
-  font-weight: 500;
-  max-width: 560px;
-  padding: 4px 0 4px 18px;
-  border-left: 2px solid var(--accent);
-  opacity: 0;
-  transform: translateY(14px);
-  animation: rise 1s 0.78s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
-}
-
-
-/* === Fixed CTA ===
-   Always-visible call to action. Floats bottom-LEFT on desktop in
-   the brand orange; becomes a full-width thumb-reach bar on mobile.
+/* === Primary CTA ===
+   In-flow solid-orange button, used in the hero and the closing section.
    Hover inverts to near-black so interaction still feels tactile. */
-.cta-fixed {
-  position: fixed;
-  bottom: 28px;
-  left: 28px;
-  z-index: 10;
-  padding: 22px 36px;
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 34px;
   background: var(--accent);
   color: #fff;
   border: 1.5px solid var(--accent);
   font-family: inherit;
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 14px;
   letter-spacing: 2px;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: rise 0.9s 1.0s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
 }
-.cta-fixed:hover {
+.cta:hover {
   background: var(--line-strong);
   border-color: var(--line-strong);
   color: var(--bg);
 }
-.cta-fixed:active { transform: translateY(1px); }
-.cta-fixed:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
-.cta-fixed .cta-arrow { margin-left: 10px; }
+.cta:hover .cta-arrow { transform: translateX(4px); }
+.cta:active { transform: translateY(1px); }
+.cta:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.cta .cta-arrow {
+  margin-left: 10px;
+  transition: transform 0.18s ease;
+}
 
-/* === Founder card (right column) ===
+/* Only the hero CTA gets the page-load entrance; the closing one is static. */
+.hero .cta {
+  margin-top: 30px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: rise 1s 0.55s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+}
+
+/* === Header ghost CTA ===
+   Compact outline button. Stays transparent and only fills orange on
+   hover, so two solid-orange buttons never compete above the fold. */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  background: transparent;
+  color: var(--fg);
+  border: 1.5px solid var(--line-strong);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.cta-ghost:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.cta-ghost:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+/* === Founders section ===
+   Centered eyebrow over an asymmetric two-column block (bio left, portrait
+   right). The asymmetry deliberately breaks the centered rhythm of the rest
+   of the page. Static (below the fold) — no entrance animation per CLAUDE.md. */
+.founders {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.founders-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 64px;
+  align-items: center;
+}
+.founders-text {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--fg);
+  max-width: 600px;
+}
+.founders-text p + p { margin-top: 14px; }
+.founders-text a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.founders-text a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+/* The "About us" title sits in the left column, above the bio paragraph,
+   left-aligned to use the empty space beside the portrait. */
+.founders-title {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.founders-text strong { font-weight: 700; }
+
+/* === Founder card (portrait) ===
    Editorial "dossier" treatment for the portrait:
-   - Mono labels top + bottom, like a print caption
+   - Mono label in the caption, like a print credit
    - Hairline frame around the image
    - Offset card behind it for tactile depth
    - Tiny corner registration marks (print-shop detail)
    - Constellation mini-mark in the caption keeps the brand metaphor alive
 */
-.right-col {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  /* Sticky so the photo card stays anchored while the long left column scrolls.
-     `top` aligns roughly with main's top padding so the image holds its initial
-     vertical position. Sticky degrades gracefully on browsers that don't support
-     it (the image just scrolls normally). */
-  position: sticky;
-  top: 32px;
-  align-self: start;
-  opacity: 0;
-  animation: rise 1.4s 0.4s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
-}
-
 .founder-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -372,8 +479,7 @@ main {
 
 /* === Footer === */
 footer {
-  /* Extra bottom padding so the fixed CTA never covers footer text */
-  padding: 20px 40px 100px;
+  padding: 28px 40px;
   border-top: 0.5px solid var(--line);
   display: flex;
   justify-content: space-between;
@@ -390,32 +496,37 @@ footer a:hover { color: var(--accent); }
 /* === Responsive === */
 @media (max-width: 900px) {
   main {
+    padding: 40px 24px 80px;
+    gap: 52px;
+  }
+  /* Benefits collapse to a single column */
+  .benefits {
     grid-template-columns: 1fr;
-    padding: 40px 24px 36px;
-    gap: 40px;
+    gap: 12px;
+    max-width: 560px;
   }
-  .right-col {
-    order: -1;
-    /* Sticky doesn't make sense on a stacked single-column mobile layout */
-    position: static;
-    top: auto;
+  /* Founders stack: copy first, portrait below, both centered */
+  .founders-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    justify-items: center;
   }
-  .founder-card { max-width: 240px; }
+  .founders-text { text-align: center; }
+  .founders-title { text-align: center; }
+  .founders .founder-card { width: 300px; max-width: 100%; }
   .founder-frame::before { inset: 8px -8px -8px 8px; }
-  .left-col h1 { letter-spacing: -1px; }
+  .hero h1 { letter-spacing: -1px; }
 }
 
 @media (max-width: 600px) {
   header { padding: 16px 20px; }
-  footer { padding: 16px 20px 110px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  footer { padding: 20px 20px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  /* Hide the live/location meta but keep the ghost REGISTER button */
   .meta { display: none; }
 
-  /* Full-width thumb-reach bar on small screens */
-  .cta-fixed {
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    text-align: center;
+  /* Hero CTA goes near-full-width for comfortable thumb reach */
+  .hero .cta {
+    width: 100%;
     padding: 18px 20px;
     font-size: 13px;
     letter-spacing: 1.8px;
@@ -429,12 +540,8 @@ footer a:hover { color: var(--accent); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .eyebrow,
-  .left-col h1 .line,
+  .hero h1 .line,
   .lede,
-  .benefits-title,
-  .benefits,
-  .manifesto-quote,
-  .cta-fixed,
-  .right-col { opacity: 1 !important; transform: none !important; }
+  .hero .cta,
+  .proof { opacity: 1 !important; transform: none !important; }
 }
